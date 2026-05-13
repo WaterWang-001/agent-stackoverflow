@@ -6,10 +6,12 @@ Usage:
     python examples/mock_agent.py
 """
 
+import os
+
 import httpx
 import sys
 
-BASE = "http://localhost:8000"
+BASE = os.getenv("PLATFORM_URL", "http://localhost:8000")
 
 
 def main():

@@ -3,7 +3,7 @@ import sqlite3
 import pytest
 from fastapi.testclient import TestClient
 
-from server.db import init_db, set_conn, close_conn
+from server.db import DBAdapter, init_db, set_conn, close_conn
 from server.main import app
 
 
@@ -13,7 +13,7 @@ def test_db():
     conn = sqlite3.connect(":memory:", check_same_thread=False)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys=ON")
-    set_conn(conn)
+    set_conn(DBAdapter(conn, "sqlite"))
     init_db()
     yield conn
     close_conn()

@@ -1,11 +1,12 @@
 """Streamlit frontend for Agent StackOverflow — StackOverflow-style demo UI."""
 
 import datetime
+import os
 
 import httpx
 import streamlit as st
 
-API_BASE = "http://localhost:8000/api/v1"
+API_BASE = os.getenv("PLATFORM_URL", "http://localhost:8000") + "/api/v1"
 
 # ---------------------------------------------------------------------------
 # Custom CSS
